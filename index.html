@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scenepackhub - Premium Scene Packs</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Credit Modal -->
+    <div id="creditModal" class="modal">
+        <div class="modal-content credit-modal">
+            <button class="close-modal">&times;</button>
+            <h2>📌 Support the Creator</h2>
+            <p>Thank you for using our scenepacks! Please tag us for credits so we can keep creating amazing content.</p>
+            <div class="credit-links">
+                <a href="https://www.tiktok.com/@kasenccscenes" target="_blank" class="credit-link tiktok">
+                    <span>TikTok: @kasenccscenes</span>
+                </a>
+                <a href="https://www.tiktok.com/@kasen.cc" target="_blank" class="credit-link tiktok">
+                    <span>TikTok: @kasen.cc</span>
+                </a>
+                <a href="https://www.instagram.com/kasenccscenes" target="_blank" class="credit-link instagram">
+                    <span>Instagram: @kasenccscenes</span>
+                </a>
+            </div>
+            <button id="closeCredits" class="btn-primary">Got it!</button>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <h1>✨ Scenepackhub</h1>
+            </div>
+            <div class="nav-right">
+                <div class="theme-toggle">
+                    <input type="checkbox" id="themeToggle" class="toggle-checkbox">
+                    <label for="themeToggle" class="toggle-label">🌙</label>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Search & Filter Section -->
+        <div class="search-filter-section">
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search scenepacks..." class="search-input">
+                <span class="search-icon">🔍</span>
+            </div>
+
+            <div class="filter-section">
+                <div class="filter-group">
+                    <label class="filter-label">Filter by Category:</label>
+                    <div class="filter-chips" id="categoryFilter">
+                        <button class="filter-chip active" data-filter="all">All</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="all">All Scenepacks</button>
+            <button class="tab-btn" data-tab="recent">Recent</button>
+        </div>
+
+        <!-- Scenepacks Grid -->
+        <div id="scenepacksContainer" class="scenepacks-grid">
+            <!-- Scenepacks will be dynamically loaded here -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="empty-state hidden">
+            <p>No scenepacks found. Try adjusting your filters!</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Made with ✨ by Kasencc | Follow us on TikTok & Instagram</p>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
