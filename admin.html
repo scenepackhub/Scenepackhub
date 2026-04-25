@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Scenepackhub</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="admin-styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <h1>🔧 Admin Panel</h1>
+            </div>
+            <div class="nav-right">
+                <a href="index.html" class="btn-secondary">← Back to Home</a>
+                <div class="theme-toggle">
+                    <input type="checkbox" id="themeToggle" class="toggle-checkbox">
+                    <label for="themeToggle" class="toggle-label">🌙</label>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="admin-tab-btn active" data-tab="add">➕ Add Scenepack</button>
+            <button class="admin-tab-btn" data-tab="manage">📋 Manage Scenepacks</button>
+            <button class="admin-tab-btn" data-tab="analytics">📊 Analytics</button>
+        </div>
+
+        <!-- Add Scenepack Tab -->
+        <div id="add-tab" class="tab-content active">
+            <div class="admin-section">
+                <h2>Add New Scenepack</h2>
+                <form id="addForm" class="admin-form">
+                    <div class="form-group">
+                        <label for="characterName">Character Name *</label>
+                        <input type="text" id="characterName" required placeholder="e.g., Harry Potter">
+                        <small>The main character featured in the scenepack</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="showName">Show/Movie Name *</label>
+                        <input type="text" id="showName" required placeholder="e.g., Harry Potter Series">
+                        <small>The show or movie this character is from</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">Category *</label>
+                        <select id="category" required>
+                            <option value="">Select a category</option>
+                            <option value="TV Show">TV Show</option>
+                            <option value="Movie">Movie</option>
+                            <option value="Game/Show">Game/Show</option>
+                            <option value="Anime">Anime</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="videoUrl">YouTube Video URL *</label>
+                        <input type="url" id="videoUrl" required placeholder="e.g., https://www.youtube.com/embed/VIDEO_ID">
+                        <small>Use YouTube embed URL format (youtube.com/embed/VIDEO_ID)</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="imageUpload">Upload Thumbnail Image *</label>
+                        <input type="file" id="imageUpload" accept="image/*" required>
+                        <small>Recommended size: 300x200px. Maximum: 5MB</small>
+                        <div id="imagePreview" class="image-preview"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tagsInput">Add Tags</label>
+                        <input type="text" id="tagsInput" placeholder="Type tag and press Enter (e.g., dark, aesthetic, moody)">
+                        <small>Press Enter after each tag</small>
+                        <div id="tagsDisplay" class="tags-display"></div>
+                    </div>
+
+                    <button type="submit" class="btn-primary" style="align-self: flex-start;">
+                        ✨ Add Scenepack
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Manage Scenepacks Tab -->
+        <div id="manage-tab" class="tab-content">
+            <div class="admin-section">
+                <h2>Manage Scenepacks</h2>
+                
+                <div class="manage-search">
+                    <input type="text" id="manageSearch" placeholder="Search by character or show name...">
+                </div>
+
+                <div id="emptyManage" class="empty-state hidden">
+                    <p>No scenepacks yet. Create one in the "Add Scenepack" tab!</p>
+                </div>
+
+                <div id="scenepacksList" class="scenepack-list"></div>
+            </div>
+        </div>
+
+        <!-- Analytics Tab -->
+        <div id="analytics-tab" class="tab-content">
+            <div class="admin-section">
+                <h2>📊 Analytics Dashboard</h2>
+
+                <div class="analytics-grid">
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalViews">0</div>
+                        <div class="stat-label">Total Views</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="weekViews">0</div>
+                        <div class="stat-label">Views This Week</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="monthViews">0</div>
+                        <div class="stat-label">Views This Month</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalScenepacks">0</div>
+                        <div class="stat-label">Total Scenepacks</div>
+                    </div>
+                </div>
+
+                <div class="admin-section">
+                    <h3>🏆 Most Viewed This Week</h3>
+                    <div id="mostViewedList" class="most-viewed-list"></div>
+                </div>
+            </div>
+
+            <!-- Backup & Import Section -->
+            <div class="admin-section">
+                <h2>💾 Backup & Import Data</h2>
+
+                <div class="backup-section">
+                    <h3>📥 Export Data</h3>
+                    <p>Download a backup of all your scenepacks and analytics data as JSON.</p>
+                    <button id="exportBtn" class="btn-primary">⬇️ Export Data</button>
+                </div>
+
+                <div class="backup-section">
+                    <h3>📤 Import Data</h3>
+                    <p>Restore scenepacks and analytics from a previously exported JSON file.</p>
+                    <input type="file" id="importFile" accept=".json">
+                    <button id="importBtn" class="btn-primary">⬆️ Import Data</button>
+                    <div id="importMessage"></div>
+                </div>
+
+                <div class="backup-section">
+                    <h3>⚠️ Danger Zone</h3>
+                    <p>Delete all scenepacks and analytics. This action cannot be undone!</p>
+                    <button id="clearAllBtn" class="btn-danger">🗑️ Clear All Data</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Admin Panel | Made with ✨ by Kasencc | Keep this URL private!</p>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>
